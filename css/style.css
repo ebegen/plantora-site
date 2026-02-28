@@ -1,0 +1,259 @@
+:root {
+    /* Earthy Palette - Revised for Lightness */
+    --primary-green: #2D6A4F;
+    --acc-green: #40916C;
+    --sand-bg: #FCFBF7;
+    /* Very light earthy/eggshell */
+    --text-primary: #1B4332;
+    --text-secondary: #52796F;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+}
+
+/* Force light theme colors even in dark mode for this site design */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --sand-bg: #FCFBF7;
+        --text-primary: #1B4332;
+        --text-secondary: #52796F;
+        --primary-green: #2D6A4F;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+    }
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, serif;
+    background-color: var(--sand-bg);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(252, 251, 247, 0.9);
+    /* Frosted glass effect */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary-green);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.5px;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--primary-green);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 0 60px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, #1B4332, #40916C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.app-store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #1B4332;
+    /* Darker green for contrast */
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 20px rgba(27, 67, 50, 0.2);
+}
+
+.app-store-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(27, 67, 50, 0.3);
+}
+
+/* SCROLL LAYOUT (The Magic) */
+.scroll-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 80px 0;
+    position: relative;
+    gap: 60px;
+}
+
+/* Left Side: Scrolling Text */
+.feature-steps {
+    flex: 1;
+    min-width: 0;
+}
+
+.step {
+    min-height: 70vh;
+    /* Condensed slightly */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0;
+    opacity: 0.25;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step h2 {
+    font-size: 2.5rem;
+    color: var(--primary-green);
+    margin-bottom: 16px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.step p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Right Side: Sticky Phone */
+.phone-sticky-wrapper {
+    flex: 0 0 380px;
+    position: sticky;
+    top: calc(50vh - 350px);
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iphone-frame {
+    width: 320px;
+    height: auto;
+    /* Allow height to fit image aspect */
+    aspect-ratio: 9 / 19.5;
+    background: transparent;
+    /* No black bg */
+    border-radius: 48px;
+    /* Removed thick border - images look like they have device frame */
+    /* border: 8px solid #2d2d2d; */
+    box-shadow: 0 50px 100px -20px rgba(27, 67, 50, 0.15);
+    /* Greenish shadow */
+    position: relative;
+    overflow: hidden;
+}
+
+/* REMOVED Dynamic Island ::after */
+
+.screen-container {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 40px;
+    /* Match screen radius */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Images */
+.screen-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* or contain, depending on if image includes bezel */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.screen-img.active {
+    opacity: 1;
+}
+
+/* Footer */
+footer {
+    padding: 60px 0;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+@media (max-width: 900px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .scroll-container {
+        flex-direction: column-reverse;
+        padding-top: 40px;
+    }
+
+    .phone-sticky-wrapper {
+        position: relative;
+        top: 0;
+        height: auto;
+        margin-bottom: 60px;
+        width: 100%;
+    }
+
+    .iphone-frame {
+        width: 280px;
+        box-shadow: 0 30px 60px -15px rgba(27, 67, 50, 0.15);
+    }
+
+    .step {
+        min-height: auto;
+        padding: 40px 0;
+        text-align: center;
+        opacity: 1;
+    }
+}
